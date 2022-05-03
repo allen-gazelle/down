@@ -96,6 +96,8 @@
     "predictive_search_show_vendor": false,
     "predictive_search_show_price": true,
     "currency_code_enabled": true,
+    "free_gift_product": "fixkit-build-kits",
+    "free_gift_cart_min_total": 5000,
     "sections": {
       "announcement-bar": {
         "type": "announcement-bar",
