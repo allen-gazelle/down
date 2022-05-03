@@ -1143,5 +1143,20 @@
         "default": true
       }
     ]
+  },
+  {
+    "name": "Free gift",
+    "settings": [
+      {
+        "type": "product",
+        "id": "free_gift_product",
+        "label": "Select a Product"
+      },
+      {
+        "type":"number",
+        "id": "free_gift_cart_min_total",
+        "label": "Enter minimum purchase amount"
+      }
+    ]
   }
 ]
