@@ -49,7 +49,16 @@ class PredictiveSearch extends HTMLElement {
     if (this.getAttribute('results') === 'true') {
       this.open();
     } else {
+      this.checkLength(searchTerm);
+    }
+  }
+
+  checkLength(searchTerm) {
+    if (searchTerm.length > 2) {
       this.getSearchResults(searchTerm);
+    }
+    else {
+      this.getSearchResults('IthilOnnumIlla');
     }
   }
 
@@ -128,8 +137,7 @@ class PredictiveSearch extends HTMLElement {
       return;
     }
 
-    fetch(`${routes.predictive_search_url}?q=${encodeURIComponent(searchTerm)}&${encodeURIComponent('resources[type]')}=product&${encodeURIComponent('resources[limit]')}=4&section_id=predictive-search`)
-      .then((response) => {
+    fetch(`${routes.predictive_search_url}?q=${encodeURIComponent(searchTerm)}&${encodeURIComponent('resources[type]')}=product&${encodeURIComponent('resources[limit]')}=5&${encodeURIComponent('resources[fields]')}=title,product_type,variants.title,variants.sku,body,vendor&section_id=predictive-search`)      .then((response) => {
         if (!response.ok) {
           var error = new Error(response.status);
           this.close();
