@@ -190,6 +190,7 @@
     {% endstyle %}
 
     {{ 'base.css' | asset_url | stylesheet_tag }}
+    {{ 'go-cart.css' | asset_url | stylesheet_tag }}
 
     {%- unless settings.type_body_font.system? -%}
       <link rel="preload" as="font" href="{{ settings.type_body_font | font_url }}" type="font/woff2" crossorigin>
@@ -233,7 +234,8 @@
         cart_change_url: '{{ routes.cart_change_url }}',
         cart_update_url: '{{ routes.cart_update_url }}',
         predictive_search_url: '{{ routes.predictive_search_url }}'
-      };
+      };    {{ 'go-cart.css' | asset_url | stylesheet_tag }}
+
 
       window.cartStrings = {
         error: `{{ 'sections.cart.cart_error' | t }}`,
@@ -251,6 +253,18 @@
         shareSuccess: `{{ 'general.share.success_message' | t }}`,
         pauseSlideshow: `{{ 'sections.slideshow.pause_slideshow' | t }}`,
         playSlideshow: `{{ 'sections.slideshow.play_slideshow' | t }}`,
+      }
+
+      window.gocartIcons = {
+        close: `{% render 'icon-close-small' %}`,
+        arrow: `{% render 'icon-arrow' %}`,
+        plus: `{% render 'icon-plus' %}`,
+        minus: `{% render 'icon-minus' %}`
+      }
+
+      window.currency = {
+        code: '{{ cart.currency.iso_code }}',
+        symbol: '{{ cart.currency.symbol }}'
       }
     </script>
 
@@ -270,6 +284,13 @@
         });
       });
     </script>
+
+    <script src="{{ 'gocart.js' | asset_url }}" defer="defer"></script>
+    {%- section 'go-cart' -%}
     
+    <script>
+      var goCart = new GoCart();
+    </script>
+
   </body>
 </html>
