@@ -1,0 +1,15 @@
+{% comment %}
+    {{ settings.free_gift_product.selected_or_first_available_variant.id }}
+    {{ settings.free_gift_cart_min_total }}
+{% endcomment %}
+
+<script type="text/javascript">
+    $(document).on('cart.requestComplete', function(event, cart) {
+        var min_amount = {{ settings.free_gift_cart_min_total }};
+        var product_id = {{ settings.free_gift_product.selected_or_first_available_variant.id }}
+
+        if(cart.total_price >= min_amount) {
+            CartJS.addItem(product_id);
+        }
+    }
+</script>
