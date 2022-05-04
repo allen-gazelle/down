@@ -257,5 +257,19 @@
     {%- if settings.predictive_search_enabled -%}
       <script src="{{ 'predictive-search.js' | asset_url }}" defer="defer"></script>
     {%- endif -%}
+
+    <script src="{{ 'jquery.min.js' | asset_url }}" defer="defer"></script>
+    <script src="{{ 'cart.min.js' | asset_url }}" defer="defer"></script>
+    
+    <script type="text/javascript" src="{{ 'jquery.min.js' | asset_url }}" defer="defer">
+      jQuery(function() {
+        CartJS.init({{ cart | json }}, {
+          "dataAPI": false,
+          "debug":true,
+          "requestBodyClass": "loading"
+        });
+      });
+    </script>
+    
   </body>
 </html>
