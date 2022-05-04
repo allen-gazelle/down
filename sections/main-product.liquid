@@ -585,6 +585,17 @@
     document.querySelector('#Variants-{{ section.id }}').addEventListener('change', function(event) {
       hiddenInput.value = event.currentTarget.value;
     });
+    
+    document.querySelector('input.quantity__input').addEventListener('input', function (e) {
+      console.log('quantity input')
+      const productForms = document.querySelectorAll(`product-form.product-form, #product-form-installment`);
+      productForms.forEach((productForm) => {
+        // console.log('section:', this.dataset.section)
+        let input = productForm.querySelector('input[name="quantity"]');
+        input.value = this.value;
+      });
+    });
+
   });
 </script>
 
