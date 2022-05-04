@@ -34,7 +34,7 @@ class PredictiveSearch extends HTMLElement {
       return;
     }
 
-    this.getSearchResults(searchTerm);
+    this.checkLength(searchTerm);
   }
 
   onFormSubmit(event) {
