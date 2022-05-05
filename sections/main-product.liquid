@@ -31,6 +31,8 @@
   <link id="ModelViewerOverride" rel="stylesheet" href="{{ 'component-model-viewer-ui.css' | asset_url }}" media="print" onload="this.media='all'">
 {%- endif -%}
 
+{% assign id_name = 'add-to-cart-' | append: product.handle | append: '-' | append: collection.handle | append: '-' | append: section.id %}
+
 <section class="page-width section-{{ section.id }}-padding">
   <div class="product product--{{ section.settings.media_size }} product--{{ section.settings.gallery_layout }} grid grid--1-col {% if product.media.size > 0 %}grid--2-col-tablet{% else %}product--no-media{% endif %}">
     <div class="grid__item product__media-wrapper">
@@ -585,18 +587,18 @@
     document.querySelector('#Variants-{{ section.id }}').addEventListener('change', function(event) {
       hiddenInput.value = event.currentTarget.value;
     });
-    
-    document.querySelector('input.quantity__input').addEventListener('input', function (e) {
-      console.log('quantity input')
-      const productForms = document.querySelectorAll(`product-form.product-form, #product-form-installment`);
-      productForms.forEach((productForm) => {
-        // console.log('section:', this.dataset.section)
-        let input = productForm.querySelector('input[name="quantity"]');
-        input.value = this.value;
-      });
-    });
-
   });
+
+  document.querySelector('input.quantity__input').addEventListener('input', function (e) {
+    console.log('quantity input')
+    const productForms = document.querySelectorAll(`product-form.product-form, #product-form-installment`);
+    productForms.forEach((productForm) => {
+      // console.log('section:', this.dataset.section)
+      let input = productForm.querySelector('input[name="quantity"]');
+      input.value = this.value;
+    });
+  });
+
 </script>
 
 {%- if first_3d_model -%}
